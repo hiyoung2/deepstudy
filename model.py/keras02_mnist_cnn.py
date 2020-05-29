@@ -43,7 +43,7 @@ model.add(Dense(10, activation = 'softmax'))
 
 # 3. 컴파일, 훈련
 from keras.callbacks import EarlyStopping # 훈련 시 필요한 사항
-early_stopping = EarlyStopping(monitor = 'loss', patience = '20', mode = 'max')
+early_stopping = EarlyStopping(monitor = 'loss', patience = 20, mode = 'max')
 
 model.compile(loss = 'categorical_crossentropy', optimizer = 'adam', metrics = ['acc'])
 model.fit(x_train, y_train, epochs = 50, batch_size = 200, validation_split = 0.2, callbacks = [early_stopping], verbose = 1)
