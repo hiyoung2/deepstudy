@@ -49,7 +49,7 @@ model.compile(loss = 'categorical_crossentropy', optimizer = 'adam', metrics = [
 model.fit(x_train, y_train, epochs = 50, batch_size = 200, validation_split = 0.2, callbacks = [early_stopping], verbose = 1)
 
 # 4. 평가, 예측
-loss, acc = model.evaluate(x_train, y_train, batch_size = 200)
+loss, acc = model.evaluate(x_test, y_test, batch_size = 200)
 
 print('loss : ', loss)
 print('acc : ', acc)
