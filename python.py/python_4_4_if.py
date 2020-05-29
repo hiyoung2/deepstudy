@@ -73,3 +73,17 @@ elif number == 3 :
     print("동메달입니다")
 else :
     print("아쉽습니다, 당신은 " + str (number) + "번째로 도착했습니다")
+
+n = 14
+if n > 15 :
+    print("큰 숫자")
+elif 11 <= n <= 15 :
+    print("중간 숫자")    
+
+# 4.4.5 and, or, not
+# and, or, not : boolean operator(부울 연산자)라고 부르며 조건 분기문을 기술할 때 사용
+# and나 or은 조건식 사이에 사용하며 and는 복수의 조건식이 모두 True인 경우 True를 반환하고,
+# or은 복수의 조건식 중 하나라도 True인 경우 True를 반환한다
+# not은 조건식 앞에 사용하며 조건이 True인 경우 False를 반환하고 False인 경우 True를 반환한다
+
+# 사용법
