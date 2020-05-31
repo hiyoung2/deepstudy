@@ -48,7 +48,7 @@ model.add(Dense(1))
 
 #3. 훈련  (validation fit에 추가)
 model.compile(loss='mse', optimizer='adam', metrics=['mse'])
-model.fit(x_train, y_train, epochs=5000, batch_size=10,
+model.fit(x_train, y_train, epochs=100, batch_size=10,
          validation_data=(x_val, y_val))  
          
 
