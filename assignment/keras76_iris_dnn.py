@@ -44,6 +44,7 @@ x_train, x_test, y_train, y_test = train_test_split(
     x, y, train_size = 0.8
 )
 
+
 # 1.3 데이터 shape 맞추기
 # DNN 모델이라 따로 맞춰줄 필요 없음
 
