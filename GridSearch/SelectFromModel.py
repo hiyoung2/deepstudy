@@ -42,5 +42,6 @@ for thresh in thresholds: # 컬럼 수만큼 돈다! 빙글 빙글
     score = r2_score(y_test, y_pred)
     # print("R2 :", score)
 
+
     print("Trersh=%.3f, n = %d, R2: %.2f%%" %(thresh, select_x_train.shape[1],
           score*100.0))
