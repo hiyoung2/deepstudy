@@ -1,0 +1,9 @@
+LGBM : Light Gradient Boost Machine 
+- pip.install lightgbm
+
+- xgb 보다 2년 늦게 나옴
+- xgb의 기능 거의 흡수, 속도가 빠르다
+= overfitting에 민감
+- 크기가 작은 데이터일 경우 기존의 머신 러닝 알고리즘이 더 좋을 수 있음
+- 데이터의 갯수(행 갯수)가 10,000개 이상일 때 추천하는 모델
+
