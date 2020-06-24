@@ -15,6 +15,9 @@ a, b = divmod(n, m)
 print(a)
 print(b)
 
+
+# trial and error
+
 # 런타임 에러가 나는 게 몫, 나머지 따로 따로 구하는 것 때문이라고 추측
 # 몫, 나머지를 한 번에 도출 해 낼 수 있는 게 있을 것 같아서
 # '몫과 나머지 파이썬 한 번에' 라는 키워드로 구글링
@@ -27,9 +30,6 @@ print(b)
 # print(divmod(a,b)) -> (2, 0) 으로 출력 된다
 
 
-
-# trial and error
-
 # 1차 : 런타임 에러
 # n, m = map(int, input().split())
 # a = n / m
@@ -37,11 +37,14 @@ print(b)
 # print(a)
 # print(b)
 
+
 # 2차 : 런타임 에러
 
 # n, m = map(int, input().split())
 # a, b = (n / m, n % m)
 # print(a)
 # print(b)
+
+
 
 
