@@ -1,0 +1,49 @@
+# General Parameters
+
+1. booster [dafulat = gbtree] 
+: gbtree, gblinear, dart  # 일반적으로 gbtree가 제일 성능이 낫다고 함
+
+2. verbosity [default = 1] 
+: Verbosity of printing messages. 
+Valid values are 0 (silent), 1 (warning), 2 (info), 3 (debug). 
+Sometimes XGBoost tries to change configurations based on heuristics, which is displayed as warning message. 
+If there’s unexpected behaviour, please try to increase value of verbosity. 
+
+3. validate_parameters [default to false, except for Python, R and CLI interface]
+: When set to True, XGBoost will perform validation of input parameters to check whether a parameter is used or not. 
+The feature is still experimental. It’s expected to have some false positives.
+
+4. nthred [default to maximum number of threads available if not set]
+: Number of parallel threads used to run XGBoost
+
+5. disable_default_eval_metric [default=0]
+: Flag to disable default metric. Set to >0 to disable.
+
+# Parameters for Tree Booster
+
+1. eta [default=0.3, alias: learning_rate]
+: Step size shrinkage used in update to prevents overfitting.
+After each boosting step, we can directly get the weights of new features, and
+eta shrinks the feature weights to make the boosting process more conservative
+
+range : [0, 1]
+
+3. gamma [default = 0, alias : min_split_loss]
+: Minimun loss reduction required to make a further partition on a leaf node of the Tree
+The larger gamma is, the more conservative the algorithm will behaviour
+
+range : [0, iinfinity]
+
+4. max_depth [default = 6]
+: Maximun depth of a tree. Increasing this value will make the model more complex and more likely to overfit.
+0 is only accepted in lossguided growing policty when tree_method is set as hist and it indicates no limit on depth.
+Beware that XGBoost agrressively consumes memory when training a deep tree
+# max_depth 설정시, 과적합에 유의해야 한다
+range : [0, infinity]
+
+5. min_child_weight [default = 1]
+: Minimun sum of instance weight(hessian) needed in a child.
+If the tree partition step results in a leaf node with the sum of instance weight less than min_child_weight,
+then the building process will give up further partitioning.
+In linear regression task, this simply corresponds to minimum number of instances needed to be in each node.
+The larger min_child_weight is, the more conservative the algorithm will be.
