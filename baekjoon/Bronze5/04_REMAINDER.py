@@ -7,6 +7,7 @@
 
 # 이전에 풀었던 문제에서 배운 map을 이용
 
+# 통과
 a, b, c = map(int, input().split())
 print((a+b)%c)
 print(((a%c)+(b%c))%c)
