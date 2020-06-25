@@ -22,8 +22,7 @@ print(int(a)+int(b)+int(c)+int(d)+int(e))
 # 찜찜한 통과
 # 더 단순하게 짤 순 없는 건가
 
-a, b, c, d, e = map(int, input().split('\n'))
-
+# a, b, c, d, e = map(int, input().split('\n'))
 
 
 # 더 간단한 방법이 있을 텐데 고민해봐야겠다
