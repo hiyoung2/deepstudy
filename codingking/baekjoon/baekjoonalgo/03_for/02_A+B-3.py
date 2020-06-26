@@ -16,12 +16,29 @@
 
 t = int(input())
 
-a, b = map(int, input().split())
-
-
+# 1차 
 # for a, b in range(t) :
 #     a, b = map(int, input().split())
-
 #     print(a+b)
-
 # TypeError: cannot unpack non-iterable int object
+
+# 2차
+# for i in range(t) :
+#     a, b = map(int, input().split())
+#     print(a + b)
+'''
+5
+1 1
+2
+2 2
+4
+4 4
+8
+5 5
+10
+6 6
+12
+'''
+# 3차
+# for i in range(t) :
+    # a, b = map(int, input().split())
