@@ -11,24 +11,20 @@
 # 출력
 # 총 이동시간 x 분 y 초를 출력한다. 첫 번째 줄에 x를, 두 번째 줄에 y를 출력한다.
 
-# 각 4개의 시간을 입력받아야 하므로 input을 4번 사용해 입력 받음
-to_school = input()
-to_pcroom = input()
-to_class = input()
-to_home = input()
-
-# 연산하기 위해 정수형으로 변환
-to_school = int(to_school)
-to_pcroom = int(to_pcroom)
-to_class = int(to_class)
-to_home = int(to_home)
+# 4가지 경로의 걸리는 시간을 입력받아야 하므로 input을 4번 사용해 입력 받음
+to_school = int(input())
+to_pcroom = int(input())
+to_class = int(input())
+to_home = int(input())
 
 # 분 / 초 단위로 나눠서 출력해야하므로 초의 합을 hour 변수에 넣고
 # 최종 '분'출력을 위해 필요한 60을 sec 이라는 변수에 대입하여 미리 준비
 hour = to_school + to_pcroom + to_class + to_home
 sec = 60
 
+# 1분 == 60초, 따라서 총 시간을 60으로 나눠주는데
+# '분'은 몫만 취하면 되므로 산술 연산자 // 을 써서 '몫'을 출력
+# 그리고 나머지가 '초'가 되므로 산술 연산자 %로 '초'를 출력
 print(hour//sec) # '분(minute)' 출력
 print(hour%sec)  # '초(seconds)' 출력
 
-# 이것도 너무 복잡한 느낌(변수명을 너무 길게 쓴 탓인가)

@@ -9,23 +9,20 @@
 # 출력
 # 표준 출력에 JOI군의 총점을 한 줄로 출력하라.
 
-# 일단 통과
+# 총 5번의 게임 점수를 입력 받아야 한다
+# 따라서 input을 이용하여 5번의 입력을 받는데
+# 정수형으로 받아야 하므로 int로 감싸준다
 
-a = input()
-b = input()
-c = input()
-d = input()
-e = input()
+a = int(input())
+b = int(input())
+c = int(input())
+d = int(input())
+e = int(input())
 
-print(int(a)+int(b)+int(c)+int(d)+int(e))
+# 출력은 총점이므로 입력받은 각 점수들의 합을 sum 이라는 변수에 대입
+sum = a + b + c + d + e
 
-# 찜찜한 통과
-# 더 단순하게 짤 순 없는 건가
+# 총점 출력
+print(sum)
 
-# a, b, c, d, e = map(int, input().split('\n'))
-
-
-# 더 간단한 방법이 있을 텐데 고민해봐야겠다
-# 처음에 문제를 보고는 조건을 함께 적어주고 random 함수를 써서 입력 받아야 하는 거라고 생각
-# ???
 
