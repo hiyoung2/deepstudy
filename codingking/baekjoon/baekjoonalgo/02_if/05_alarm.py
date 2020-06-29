@@ -42,3 +42,20 @@ else :
 # h, m을 안에서 설정해주면 된다
 
 
+# if h == 0 :
+#     if m > 45 : 
+#         m -= 45
+#     elif m < 45 :
+#         h += 23
+#         m += 15
+#     else :
+#         m == 0
+# else :
+#     if m > 45 : 
+#         m -= 45
+#     elif m < 45 :
+#         h -= 1
+#         m += 15
+#     else :
+#         m == 0
+# print(h, m)

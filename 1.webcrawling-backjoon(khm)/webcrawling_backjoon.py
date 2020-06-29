@@ -8,7 +8,7 @@ import pandas as pd
 
 q_num = input()
 
-# q_num=1032
+# q_num=10321330
 index = f"https://www.acmicpc.net/problem/{q_num}"
 source = urlopen(index).read()
 source_bs4 = bs4.BeautifulSoup(source,"html.parser")

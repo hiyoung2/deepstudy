@@ -13,16 +13,24 @@
 # 따라서 input을 이용하여 5번의 입력을 받는데
 # 정수형으로 받아야 하므로 int로 감싸준다
 
-a = int(input())
-b = int(input())
-c = int(input())
-d = int(input())
-e = int(input())
+# a = int(input())
+# b = int(input())
+# c = int(input())
+# d = int(input())
+# e = int(input())
 
 # 출력은 총점이므로 입력받은 각 점수들의 합을 sum 이라는 변수에 대입
-sum = a + b + c + d + e
+# sum = a + b + c + d + e
 
 # 총점 출력
-print(sum)
+# print(sum)
 
+# for문으로 한 번에 처리하기
 
+# cnt = range(5)
+total = 0
+
+for i in range(5) :
+    score = int(input())
+    total += score
+print(total)
