@@ -13,6 +13,10 @@
 # --problem_output--
 # 첫째 줄에 가장 싼 세트 메뉴의 가격을 출력한다.
 
+# 1. 버거 세 개와 음료 2개의 가격을 입력 받기(for문 + input 사용)
+# 2. 입력 받은 버거 세 종류의 가격 중 가장 저렴한, 즉 가장 작은 수를 하나 뽑아내야한다(방법은 알아봐야함)
+# 3. 음료도 마찬가지
+# 4. 2와 3을 통해 가장 작은 값을 얻은 후 더해주고 50을 빼줘서 세트메뉴 가격 도출
 
 # sdburger = int(input())
 # jdburger = int(input())
@@ -21,22 +25,23 @@
 # cheonyeon = int(input())
 # 버거는 버거끼리, 음료는 음료끼리 따로 입력을 받고 하나의 묶음으로 만들어줘야 할 것 같아서 수정
 
+# 버거 값 입력 받기
 burgers = []
 for i in range(3) :
     burger = int(input())
     burgers.append(burger)
-# print(burgers)
 
+# 음료 값 입력 받기
 drinks = []
 for j in range(2) :
     drink = int(input())
     drinks.append(drink)
-# print(drinks)
 
 # "파이썬 가장 작은 수 찾기" 구글링으로 
 # 파이썬에서 제공하는 min 함수로 리스트(또는 튜플)에서 가장 작은 값을 구할 수 있는 방법을 배움
 # cheapest_burger = min(burgers) # 반대로 가장 큰 값을 구하려면 max()함수를 사용하면 된다
 # cheapest_drink = min(drinks)
 
+# 세트메뉴 가격 도출
 set_menu = min(burgers) + min(drinks) - 50
 print(set_menu)
