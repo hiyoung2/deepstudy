@@ -17,8 +17,14 @@
 
 # 1. 날짜의 일의 자리 숫자 입력 받기, 5대의 자동차 번호의 일의 자리 숫자 입력 받기 (input(), sys.stdin.readlin() 사용 가능)
 # 2. 입력받은 자동차 일의 자리 숫자들 중 날짜의 일의 자리 숫자와 동일한 숫자가 몇 개인지 출력해내면 된다
-# import sys
-# day = input()
-# n1, n2, n3, n4, n5 = sys.stdin.readline().split()
 
-# car = []
+# 리스트에서 같은 이름(?)을 가진 게 몇 개 있는지 추출해내는 기능을 봤던 것 같아서 정리해 둔 거 찾아보고 count()함수 적용
+# count("강아지") 라고 하면 어떤 리스트에 "강아지" 요소가 몇 개인지 추출해내줌
+
+import sys
+
+day = input()
+n1, n2, n3, n4, n5 = (sys.stdin.readline().split())
+
+car = [n1, n2, n3, n4, n5]
+print(car.count(day))
