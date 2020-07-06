@@ -18,11 +18,13 @@
 # --problem_output--
 # 모든 좌석을 전부 촬영하도록 CCTV를 배치할 때, 필요한 CCTV의 최소 개수를 출력한다.
 
-# 1. 
-# import math
-# print(math.ceil(3.14))
+# 좌석 가로, 세로 전체 크기를 nxn 사이즈의 크기로 덮어야 한다는 느낌
+# 가로(세로)를 n으로 나눴을 때 나머지까지 올림을 해 주면 하나의 CCTV가 담당하는 영역이 나옴
+# 올림 해주는 함수를 구글링으로 찾아서 적용
 
 # 구글링 : 파이썬 올림
+# import math
+# print(math.ceil(3.14))
 
 import sys
 import math
