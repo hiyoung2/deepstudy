@@ -20,11 +20,11 @@
 
 # 리스트에서 같은 이름(?)을 가진 게 몇 개 있는지 추출해내는 기능을 봤던 것 같아서 정리해 둔 거 찾아보고 count()함수 적용
 # count("강아지") 라고 하면 어떤 리스트에 "강아지" 요소가 몇 개인지 추출해내줌
+# 자동차 번호를 입력 받을 때 list형태로 받기(input() or sys.stdin.readline() 앞에 list로 감싸주면 list 형태로 받아진다!)
 
 import sys
 
 day = input()
-n1, n2, n3, n4, n5 = (sys.stdin.readline().split())
+car = list(sys.stdin.readline().split())
 
-car = [n1, n2, n3, n4, n5]
 print(car.count(day))

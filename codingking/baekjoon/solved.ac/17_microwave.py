@@ -19,3 +19,12 @@
 
 # --problem_output--
 # 고기를 B℃로 데우는 데 걸리는 시간을 초 단위로 한 줄에 출력하라.
+
+# from datetime import datetime
+# print(datetime.today())
+
+# # print(datetime.today().year)
+# year = str(datetime.today().year)
+# print(year)
+# print(type(year))
+
