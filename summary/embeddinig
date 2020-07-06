@@ -1,0 +1,52 @@
+딥러닝을 이용한 자연어 처리 입문
+
+https://wikidocs.net/32105
+
+08. 딥러닝 개요
+
+6) 케라스 훑어보기
+
+1. 전처리 preprocessing
+Tokenizer() : 토큰화와 정수 인코딩(단어에 대한 인덱싱)을 위해 사용
+
+from tensorflow.keras.preprocessing.text import Tokenizer
+t  = Tokenizer()
+fit_text = "The earth is an awesome place live"
+t.fit_on_texts([fit_text])
+
+test_text = "The earth is an great place live"
+sequences = t.texts_to_sequences([test_text])[0]
+
+print("sequences : ",sequences) # great는 단어 집합(vocabulary)에 없으므로 출력되지 않는다.
+print("word_index : ",t.word_index) # 단어 집합(vocabulary) 출력
+
+sequences :  [1, 2, 3, 4, 6, 7]
+word_index :  {'the': 1, 'earth': 2, 'is': 3, 'an': 4, 'awesome': 5, 'place': 6, 'live': 7}
+
+pad_sequence() : 전체 훈련 데이터에서 각 샘플의 길이는 서로 다를 수 있다
+또는 각 문서 또는 각 문장은 단어의 수가 제각각이다
+모델의 입력으로 사용하려면 모든 샘플의 길이를 동일하게 맞추어야 할 때가 있다
+이를 자연어 처리에서는 패딩(padding) 작업이라고 하는데, 보통 숫자 0을 넣어서 길이가 다른 샘플들의 길이를 맞춰준다
+케라스에서는 pad_sequence()를 사용한다
+pad_sequence는 정해준 길이보다 길이가 긴 샘플은 값을 일부 자르고, 정해준 길이보다 길이가 짧은 샘플은 값을 0으로 채운다
+
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+pad_sequences([[1, 2, 3], [3, 4, 5, 6], [7, 8]], maxlen=3, padding='pre')
+# 전처리가 끝나서 각 단어에 대한 정수 인코딩이 끝났다고 가정하고, 3개의 데이터를 입력으로 합니다.
+
+array([[1, 2, 3],
+       [4, 5, 6],
+       [0, 7, 8]], dtype=int32)
+
+- 첫번째 인자 : 패딩을 진행할 데이터
+- maxlen = 모든 데이터에 대해서 정규화 할 길이
+- padding = 'pre'를 선택하면 앞에 0을 채우고 'post'를 선택하면 뒤에 0을 채움
+
+2. 워드 임베딩(Word Embedding)
+워드 임베딩이란 텍스트 내의 단어들을 밀집 벡터(dense vector)로 만드는 것을 말한다
+밀집 벡터란?
+원-핫 벡터와 비교해보면, 원-핫 벡터는 대부분이 0의 값을 가지고, 단 하나의 1의 값을 가지는 벡터였다
+또한 벡터의 차원이 대체적으로 크다는 성질을 가졌다
+
+원-핫 벡터의 예는 다음과 같다
+Ex) [0 1 0 0 0 0 ... 중략 ... 0 0 0 0 0 0 0] # 차원이 굉장히 크면서 대부분의 값이 0
