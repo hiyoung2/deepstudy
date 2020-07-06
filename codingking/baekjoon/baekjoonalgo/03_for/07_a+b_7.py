@@ -1,14 +1,13 @@
+import sys
+cnt = int(sys.stdin.readline())
+res = [] 
+for i in range(cnt) :
+    a, b = map(int, sys.stdin.readline().split()) 
+    cnt -= 1 
+    total = a + b 
+    res.append(total) 
 
-
-# 수정 필요
-
-# cnt = int(input()) 
-# res = [] 
-# for i in range(cnt) :
-#     a, b = map(int, input().split()) 
-#     cnt -= 1 
-#     total = a + b 
-#     res.append(total) 
-
-# for j in range(len(res)) : 
-#     print("Case #{0}:" + res[j].format(j+1)) 
+x = 0
+for j in range(len(res)) : 
+    x += 1
+    print("Case #",x,": " + str(res[j]), sep = "")
