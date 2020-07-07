@@ -34,13 +34,39 @@
 # 2. if문? for문? 을 사용해 만 나이, 세는 나이, 연 나이를 계산해서 출력한다
 
 import sys
-year, month, day = map(int, sys.stdin.readline().split())
+birth = list(map(int, sys.stdin.readline().split())) # 태어난 연도, 월, 일을 입력 받음
+stdrd = list(map(int, sys.stdin.readline().split())) # 기준 날짜를 입력 받음
 
-# 만 나이 : age_1
-# 세는 나이 : age_2
-# 연 나이 : age_3
+# print(birth[1]) # 1
+# print(type(birth[1])) # <class 'int'>
+
+# tmp = stdrd[0] - birth[0] # 2002, 2008
+# print(tmp) # 6
+
+# age_1 : 만 나이
+# age_2 : 세는 나이
+# age_3 : 연 나이
+
+# 1. 만 나이 구하기
+if birth[0] == stdrd[0] :
+    age_1 = stdrd[0] - birth[0]
+else :
+    if birth[1] > stdrd[1] :
+        age_1 = stdrd[0] - birth[0] - 1
+    elif birth[1] == stdrd[1] and birth[2] > stdrd[2]:
+        age_1 = stdrd[0] - birth[0] - 1
+    else :
+        age_1 = stdrd[0] - birth[0]
+
+print(age_1) # 만 나이
 
 
-# print(age_1) # 만 나이
-# print(age_2) # 세는 나이
-# print(age_3) # 연 나이
+# 2. 세는 나이 구하기
+age_2 = stdrd[0] - birth[0] + 1
+
+print(age_2)
+
+# 3. 연 나이 구하기
+age_3 = stdrd[0] - birth[0]
+
+print(age_3)
