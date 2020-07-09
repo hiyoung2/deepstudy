@@ -15,3 +15,12 @@ https://www.acmicpc.net/problem/10817
 두 번째로 큰 정수를 출력한다.
 
 '''
+
+import numpy as np
+a = np.array([[1, 2, 3],[4, 5, 6]])
+b = np.array([10, 20, 30])
+c = np.array([[10, 20, 30]])
+
+
+print("a + b :", a+b)
+print("a + c :", a+c)
