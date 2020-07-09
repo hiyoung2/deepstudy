@@ -21,18 +21,14 @@
 # --problem_output--
 # 첫 번째 줄에 손익분기점 즉 최초로 이익이 발생하는 판매량을 출력한다. 손익분기점이 존재하지 않으면 -1을 출력한다.
 
-# 예제 입력 : 300(고정비용) 4(가변비용) 1000(판매가격)
-# 예제 출력 : 200(손익분기점을 넘기는 판매량)
-
-# 판매량 : sales rate -> x
-# 매출 총이익 :  gross profit
-# 매출 순이익 : net profit
+# a = 고정비
+# b = 가변비
+# c = 판매가
+# x = 판매량
 
 import sys
-fixed, variable, price = map(int, sys.stdin.readliine().split())
+a, b, c = map(int, sys.stdin.readliine().split())
 
-# gross = price * x
-# price * x > fixed + (variable * x)
-# 
+
 
 # print(x) # 최종 출력
