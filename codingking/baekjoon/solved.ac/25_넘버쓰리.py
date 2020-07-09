@@ -15,12 +15,23 @@ https://www.acmicpc.net/problem/10817
 두 번째로 큰 정수를 출력한다.
 
 '''
+# 행렬 덧셈 테스트 (이 파일이랑 상관 없음 -> 다른 곳으로 옮겨라)
+# import numpy as np
+# a = np.array([[1, 2, 3],[4, 5, 6]])
+# b = np.array([10, 20, 30])
+# c = np.array([[10, 20, 30]])
 
-import numpy as np
-a = np.array([[1, 2, 3],[4, 5, 6]])
-b = np.array([10, 20, 30])
-c = np.array([[10, 20, 30]])
+
+# print("a + b :", a+b)
+# print("a + c :", a+c)
 
 
-print("a + b :", a+b)
-print("a + c :", a+c)
+# 1. 세 수를 입력 받는다
+# 2. 리스트로 입력 받아서 sort 같은 것 써서 큰 수 또는 작은 수 대로 정렬
+# 3. 세 가지 숫자 중에 중간 인덱스를 출력하면 될 것 같다
+# 4. 집 가서 풀기
+
+import sys
+
+a, b, c = map(int, sys.stdin.readline().split())
+
