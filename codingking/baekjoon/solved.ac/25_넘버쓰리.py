@@ -29,14 +29,9 @@ https://www.acmicpc.net/problem/10817
 # 1. 세 수를 입력 받는다
 # 2. 리스트로 입력 받아서 sort 같은 것 써서 큰 수 또는 작은 수 대로 정렬
 # 3. 세 가지 숫자 중에 중간 인덱스를 출력하면 될 것 같다
-# 4. 집 가서 풀기
 
 import sys
-
 num = list(map(int, sys.stdin.readline().split()))
-
 num.sort()
-
 # print(num)
-
 print(num[1])
