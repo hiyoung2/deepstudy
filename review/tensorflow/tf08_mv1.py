@@ -35,7 +35,7 @@ hypothesis = (x1 * w1) + (x1 * w2) + (x3 * w3) + b
 
 cost = tf.reduce_mean(tf.square(hypothesis - y))
 
-lr = 1e-4
+lr = 9e-9
 # train 쓰는 방법 2가지
 
 # 1. optimizer와 손실함수 최소화 방법을 한 번에 모두 써 주는 방법
