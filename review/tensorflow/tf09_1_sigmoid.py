@@ -51,7 +51,7 @@ with tf.Session() as sess :
         cost_val, hy_val, _ = sess.run([cost, hypothesis, optimizer], feed_dict = {x:x_data, y:y_data})
 
         if step % 100 == 0 :
-            print(step, "cost :", cost)
+            print(step, "cost :", cost_val)
 
         acc = sess.run(accuracy, feed_dict = {x:x_data, y:y_data})
 
