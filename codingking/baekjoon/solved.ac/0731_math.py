@@ -126,14 +126,14 @@ import numpy as np
 a, b, c, d, e, f = map(int, sys.stdin.readline().split())
 
 
-A = np.array([[a, b], [d, e]])
-B = np.array([c, f])
-# A = np.array([[a, b], [d, e]], dtype = np.int)
-# B = np.array([c, f], dtype = np.int)
-# print(A)
-# print(B)
-C = np.array([x, y])
+A = [[a, b], [d, e]]
+B = [c, f]
 
-C = np.linalg.solve(A, B)
+result = np.linalg.solve(A, B)
+
+x = result[0]
+y = result[1]
+
 print(x, y)
-# print(int(C[0]), int(C[1]))
+
+
