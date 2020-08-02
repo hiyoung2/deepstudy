@@ -69,8 +69,6 @@
 #         print()
 #     print(i, end = ' ') # 파이썬에서 print 함수 인자 'end'에 원하는 문자를 넣어주면 줄바꿈 대신 원하는 문자가 추가되어 출력된다!
 
-import sys
-
 # n, m = map(int, sys.stdin.readline().split())
 # cnt = n*m
 # result = list(range(cnt))
@@ -85,20 +83,20 @@ import sys
 # 4 5 6 7
 # 8 9 10 11 -> 이렇게 출력됨;
 
-n, m = map(int, sys.stdin.readline().split())
-cnt = n * m
-result = []
+# n, m = map(int, sys.stdin.readline().split())
+# cnt = n * m
+# result = []
 
 # 문제 파악을 위해 result를 출력 해 봄
 # print(result) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
 # 리스트 수정
 
-for i in range(cnt) :
-    i += 1
-    result.append(i)
+# for i in range(cnt) :
+#     i += 1
+#     result.append(i)
 
-print(result)
+# print(result)
 # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 #  0  1  2  3  4  5  6  7  8  9   10  11
 
@@ -106,18 +104,32 @@ print(result)
 # print(type(result))
 # print(m)
 
-
-for j in range(cnt) :
-    if result[j] % m == 1 :
-        print()
-    print(result[j], end = ' ')
-
+# for j in range(cnt) :
+#     if result[j] % m == 1 :
+#         print()
+#     print(result[j], end = ' ')
 
 
-'''
-for i in result :
-    if result[i] % m == 0 :
-        print()
+# 최종 : 통과
+import sys
+n, m = map(int, sys.stdin.readline().split())
+cnt = n * m
 
-    print(result[i], end = ' ')
-'''
+for i in range(cnt) :
+    i += 1
+    if i % m == 0 :
+        print(i)
+        continue
+    print(i, end = ' ')
+
+
+# continue : 조건이 참이면 반복문 계속
+# 조건이 참일 때, continue 아랫 부분의 code block을 실행하지 않고!
+# 처음의 반복 부분으로 되돌아가서 반복 loop을 계속 하도록 한다
+# 위의 문제로 예시를 들면
+# i가 m의 배수일 때, if문이 참일 때 i가 출력되고
+# continue 때문에 더이상의 코드는 실행하지 않고 다시 for문으로 돌아간다
+# i가 m의 배수가 아닐 떄, if문이 거짓이면 
+# 다음 print문이 실행되고, ' ' 공백을 가지고 있어야 하므로 
+# end 인자를 사용해 공백을 포함하여 출력해준다
+# 주의할 것은 m의 배수가 되는, 즉 한 줄의 마지막 끝자리 숫자 뒤에는 공백이 없어야함!

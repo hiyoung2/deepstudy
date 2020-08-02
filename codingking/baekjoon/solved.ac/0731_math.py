@@ -74,14 +74,66 @@
 # print(lcm(12, 48)) # 48
 
 
-import sys
+# 3차시도 - 런타임에러
+# import sys
+# a, b, c, d, e, f = map(int, sys.stdin.readline().split())
+
+# from math import gcd
+
+# def lcm(num1, num2) :
+#     return num1 * num2 // gcd(num1, num2)
+
+# # print(lcm(a, d))
+# n = lcm(a, d) # n : a, d의 최소공배수
+
+# y = ((n/a)*c -  (n/d) * f)/((n/a) * b - (n/d) * e)
+# x = (c - b*y) / a
+
+# x = int(x)
+# y = int(y)
+
+# print(x, y)
+
+# 구글링 : 연립방정식 파이썬
+# 연립방정식을 행렬로 접근하면 된다, 연립방정식은 행렬로 표현할 수 있으므로
+# ex)
+# (a b) (x)  =  (c) 
+# (d e) (y)     (f)
+# ax + by = c
+# dx + ey = f
+# 파이썬의 linalg.solve() 함수 : 연립방정식을 풀어준다
+# numpy 모듈에 포함되어 있음
+
+# 4차시도 - 런타임에러
+# import sys 
+# import numpy as np
+# a, b, c, d, e, f = map(int, sys.stdin.readline().split())
+
+# A = np.array([[a, b], [d, e]])
+# # print(A)
+# B = np.array([c, f])
+# C = np.linalg.solve(A, B)
+# # print(C) # [2. -1.]
+# # print(C[0]) # 2.0
+
+# x = int(C[0])
+# y = int(C[1])
+
+# print(x, y)
+
+import sys 
+import numpy as np
 a, b, c, d, e, f = map(int, sys.stdin.readline().split())
 
-from math import gcd
 
-def lcm(x, y) :
-    return x * y // gcd(x, y)
+A = np.array([[a, b], [d, e]])
+B = np.array([c, f])
+# A = np.array([[a, b], [d, e]], dtype = np.int)
+# B = np.array([c, f], dtype = np.int)
+# print(A)
+# print(B)
+C = np.array([x, y])
 
-# print(lcm(a, d))
-n = lcm(a, d) # n : a, d의 최소공배수
-
+C = np.linalg.solve(A, B)
+print(x, y)
+# print(int(C[0]), int(C[1]))
