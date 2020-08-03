@@ -33,9 +33,18 @@
 
 import sys
 
-case = int(sys.stdiin.readline())
+case = int(sys.stdin.readline())
+num = []
+score = []
 
 for i in range(case) :
     n = int(input())
+    
     for j in range(n) :
+        sco = int(input())
+        score.append(sco)
+
+    print(n, score)
+        
+    
         
