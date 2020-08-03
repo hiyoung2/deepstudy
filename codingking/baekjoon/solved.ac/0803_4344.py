@@ -33,5 +33,9 @@
 
 import sys
 
-cnt = int(sys.stdiin.readline())
-print(cnt)
+case = int(sys.stdiin.readline())
+
+for i in range(case) :
+    n = int(input())
+    for j in range(n) :
+        
