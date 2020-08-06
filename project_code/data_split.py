@@ -50,6 +50,19 @@ def file_path_save():
 
 if __name__ == '__main__': file_path_save()
 
+# ~~ testdata/*.jpg : *로 인해 jpg 형식 파일 모두를 불러낼 수 있다
+# SELECT * FROM 이 생각난다
+
+# glob.glob 함수를 통해 특정 디렉토리(폴더)로 부터 디렉토리 및 파일 목록을 가져와서 리스트를 보면 정렬되지 않는 경우
+# sorted : 파일명 순서대로 정렬된다
+# if, 다른 조건으로 정렬하려면?
+
+# sorted(glob.glob('*'), key = os.path.getctime) # 파일 생성일
+# sorted(glob.glob('*'), key = os.path.getatime) # 파일 최근 접근일
+# sorted(glob.glob('*'), key = os.path.getmtime) # 파일 최종 수정일
+# sorted(glob.glob('*'), key = os.path.getsize) # 파일 사이즈로 정렬
+
+
 # open
 # r : read(default), 읽기용으로 파일 열기
 # w : write, 쓰기용으로 파일 열기
