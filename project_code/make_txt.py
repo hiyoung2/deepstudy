@@ -15,11 +15,11 @@ import sys
 
 #         print(file_list)
 
-sys.stdout = open('test.txt', 'a')
-open = ('./test.txt', 'a')
+sys.stdout = open('testdata.txt', 'a')
+open = ('./testdata.txt', 'a')
 
-main_file_path = 'C:/darknet-master/darknet-master/build/darknet/x64/mydata/test'
+main_file_path = 'C:/darknet-master/darknet-master/build/darknet/x64/mydata/testdata'
 
 for m in os.listdir(main_file_path) :
     if m[-3:] == 'jpg' :
-        print('mydata/test/' + m)
+        print('mydata/testdata/' + m)
