@@ -28,12 +28,42 @@
 # 문자열 슬라이싱 -> 문자열을 이루는 각 문자들의 index를 이용
 
 
-# 1차 시도 - 런타임 에러
-grade = input()
+# 오답 - 런타임 에러
+# grade = input()
 
-print(grade) # A0
-print(type(grade)) # <class 'str'>
-print(grade[0]) # A
+# # print(grade) # A0
+# # print(type(grade)) # <class 'str'>
+# # print(grade[0]) # A
+
+# if grade[0] == "A" :
+#     score = 4.0
+# elif grade[0] == "B" :
+#     score = 3.0
+# elif grade[0] == "C" :
+#     score = 2.0
+# elif grade[0] == "D" :
+#     score = 1.0
+# else :
+#     score = 0.0
+
+# # print(score)
+
+# if grade[1] == "+" : # grade[1] == + or - (0은 제외, 위의 조건문이 있으므로)
+#     score += 0.3
+# elif grade[1] == "-" :
+#     score -= 0.3
+# print(score)
+
+# 이제껏 런타임 에러가 났던 이유들은 대부분 놓친 부분, 예외 처리를 못했다는 것들이었음
+# 문제를 보면 A, B, C, D, E 등급은 +, 0. - 로 나눠져 있지만
+# F는 그냥 0.0 이게 끝, 즉 F+나 F-는 입력 될 수 없는 값
+# F는 score[1]이 존재하지 않기 때문에
+# A, B, C, D, E와 같이 grade[1]을 따져줄 필요가 없음
+# 따라서 +, - 를 따지는 조건문에서는 미리 F는 해당하지 않음을 명시해주면 될 것 같았다 
+
+
+# 정답
+grade = input()
 
 if grade[0] == "A" :
     score = 4.0
@@ -47,10 +77,9 @@ else :
     score = 0.0
 
 # print(score)
-
-if grade[1] == "+" : # grade[1] == + or - (0은 제외, 위의 조건문이 있으므로)
-    score += 0.3
-elif grade[1] == "-" :
-    score -= 0.3
-
+if grade[0] != "F" :
+    if grade[1] == "+" : # grade[1] == + or - (0은 제외, 위의 조건문이 있으므로)
+        score += 0.3
+    elif grade[1] == "-" :
+        score -= 0.3
 print(score)
