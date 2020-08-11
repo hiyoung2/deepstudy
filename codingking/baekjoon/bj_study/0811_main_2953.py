@@ -25,7 +25,7 @@ import sys
 count = 5
 total = []
 
-for i in range(5): 
+for i in range(count): 
     score = list(map(int, sys.stdin.readline().split())) # 다섯 사람의 점수를 리스트로 입력 받는다
     total_score = sum(score) # 각 다섯 사람의 점수 총합
 
