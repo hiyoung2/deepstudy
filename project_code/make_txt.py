@@ -15,10 +15,10 @@ import sys
 
 #         print(file_list)
 
-sys.stdout = open('testdata.txt', 'a')
-open = ('./testdata.txt', 'a')
+sys.stdout = open('darknettest.txt', 'a')
+open = ('./darknettest.txt', 'a')
 
-main_file_path = 'C:/darknet-master/darknet-master/build/darknet/x64/mydata/testdata'
+main_file_path = 'C:/Users/bitcamp/anaconda3/Lib/site-packages/darknet/mydata'
 
 for m in os.listdir(main_file_path) :
     if m[-3:] == 'jpg' :
