@@ -4,3 +4,15 @@
 *.csv
 *.pyc
 *.txt
+*.css
+*.eot
+*.ttf
+*.woff2
+*.woff
+*.jpg
+*.png
+*.svg
+*.gif
+*.js
+*.scss
+*.html
