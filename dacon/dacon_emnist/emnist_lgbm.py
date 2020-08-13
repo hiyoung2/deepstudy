@@ -36,6 +36,98 @@ print(submission.set_index('id').head())
 print()
 print("submission.shape :", submission.shape) # (20480, 2) # id, digit-> digit를 예측해야 한다
 
+
+'''
+train_haed
+    digit letter  0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  ...  760  761  762  763  764  765  766  767  768  769  770  771  772  773  774  775  776  777  778  779  780  781  782  783
+id                                                                                              ...
+1       5      L  1  1  1  4  3  0  0  4  4  3   0   4   3   3   3   4   4   0   0   1   1   3  ...    0    1    0    0    3    0    0    4    2    0    3    4    1    1    2    1    0    1    2    4    4    4    3    4 
+2       0      B  0  4  0  0  4  1  1  1  4  2   0   3   4   0   0   2   3   4   0   3   4   3  ...    3    3    1    2    4    4    4    2    2    4    4    0    4    2    0    3    0    1    4    1    4    2    1    2 
+3       4      L  1  1  2  2  1  1  1  0  2  1   3   2   2   2   4   1   1   4   1   0   1   3  ...    2    0    4    4    1    3    0    3    2    0    2    3    0    2    3    3    3    0    2    0    3    0    2    2 
+4       9      D  1  2  0  2  0  4  0  3  4  3   1   0   3   2   2   0   3   4   1   0   4   1  ...    3    4    3    0    4    1    2    4    1    4    0    1    0    4    3    3    2    0    1    4    0    0    1    1 
+5       6      A  3  0  2  4  0  3  0  4  2  4   2   1   4   1   1   4   4   0   2   3   4   4  ...    2    1    0    3    2    2    2    2    1    4    2    1    2    1    4    4    3    2    1    3    4    3    1    2 
+
+[5 rows x 786 columns]
+
+train.sahpe : (2048, 787)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test_haed
+     letter  0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  ...  760  761  762  763  764  765  766  767  768  769  770  771  772  773  774  775  776  777  778  779  780  781  782  783
+id                                                                                             ...
+2049      L  0  4  0  2  4  2  3  1  0  0   1   0   1   3   4   4   0   0   2   4   4   1   3  ...    1    2    4    0    2    1    2    4    1    1    3    2    1    0    2    0    4    2    2    4    3    4    1    4  
+2050      C  4  1  4  0  1  1  0  2  2  1   0   3   0   1   1   4   1   2   0   2   2   0   4  ...    4    2    2    4    3    1    3    3    3    1    3    4    4    2    0    3    2    4    2    4    2    2    1    2  
+2051      S  0  4  0  1  3  2  3  0  2  1   2   0   1   0   3   0   1   4   3   0   0   3   0  ...    3    1    1    4    1    2    4    0    0    0    0    2    3    2    1    3    2    0    3    2    3    0    1    4  
+2052      K  2  1  3  3  3  4  3  0  0  2   3   2   3   4   4   4   0   1   4   2   2   0   1  ...    0    0    2    3    2    2    3    1    1    2    4    0    1    2    3    0    3    2    4    1    0    4    4    4  
+2053      W  1  0  1  1  2  2  1  4  1  1   4   3   4   1   2   1   4   3   3   4   0   4   4  ...    4    3    4    3    0    1    0    1    1    2    1    1    0    2    4    3    1    4    0    2    1    2    3    4  
+
+[5 rows x 785 columns]
+
+test.sahpe : (20480, 786)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+submission_head
+      digit
+id
+2049      0
+2050      0
+2051      0
+2052      0
+2053      0
+
+submission.shape : (20480, 2)
+'''
+
+# 데이터 각 열 자료형 확인
+print("train's dtype")
+print(train.dtypes)
+print()
+print("test's dtype")
+print(test.dtypes)
+print()
+print("submission's dtype")
+print(submission.dtypes)
+
+'''
+train's dtype
+id         int64
+digit      int64
+letter    object
+0          int64
+1          int64
+           ...
+779        int64
+780        int64
+781        int64
+782        int64
+783        int64
+Length: 787, dtype: object
+
+test's dtype
+id         int64
+letter    object
+0          int64
+1          int64
+2          int64
+           ...
+779        int64
+780        int64
+781        int64
+782        int64
+783        int64
+Length: 786, dtype: object
+
+submission's dtype
+id       int64
+digit    int64
+dtype: object
+
+id        774
+digit       4
+letter      A
+Name: 773, dtype: object
+'''
+
 # view image
 img = train.query("letter == 'A'")[
     [(str(i)) for i in range(784)]
@@ -43,8 +135,20 @@ img = train.query("letter == 'A'")[
 
 plt.imshow(img)
 plt.title(train.query("letter == 'A'").iloc[28]['digit'], fontsize=15)
-plt.show()
+# plt.show()
 
+print()
+print(train.query("letter == 'A'").iloc[28].iloc[:3])
+
+'''
+id        774
+digit       4
+letter      A
+Name: 773, dtype: object
+'''
+# 위의 이미지는 A 문자 속에 4가 숨어 있음, 모든 이미지들은 위와 같이 생겼고, '4'를 예측하는 것이 목표!
+
+################################################################################################################
 # query 메서드 
 # pandas에서 DataFrame은 query 메서드를 지원한다 # pd.DataFrame.query
 # 이 메서드는 조건식을 문자열로 입력받아 해당 조건에 만족하는 행을 추출해 출력해주는 함수이다
@@ -88,3 +192,42 @@ plt.show()
 # (2) DataFrame.query('a<b and b<c')
 # (3) DataFrame.query('a<b<c')
 
+
+# query 내용 보충 필요 - 사이트 참고 https://kongdols-room.tistory.com/120
+##################################################################################################
+
+
+# CNN 사용
+# 아래 커널을 이미지마다 적용, Convolution 연산(가중합)을 취해 이미지의 특성을 파악하는 것이 목적
+
+from scipy.signal import correlate2d
+
+kernel = np.array([
+    [0, -100, 0],
+    [0, 255, 0],
+    [0, -100, 0],
+])
+
+plt.imshow(correlate2d(img, kernel, mode='same'))
+# plt.show()
+
+# Baseline 구축
+# LightGBM
+
+# 문자 데이터를 one-hot encoding 하고
+# 이미지 픽셀 데이터를 784개의 위치 feature라고 생각하고 concat
+
+x_train = pd.concat(
+    (pd.get_dummies(train.letter), train[[str(i) for i in range(784)]]), 
+    axis=1)
+y_train = train['digit']
+
+# pd.get_dummies? 
+# pandas.get_dummies() : One-Hot Encoding
+# 머신러닝에서 문자로 된 데이터는 모델링이 되지 않는 경우가 있다
+# 대표적으로 회귀분석은 숫자로 이루어진 데이터만 입력을 해야 한다
+# 문자를 숫자로 바꿔주는 방법 중 하나로 One-Hot Encoding이 있다
+# 가변수(dummy variable)로 만들어주는 것인데, 이는 0과 1로 이루어진 열을 나타낸다
+# 1은 있다, 0은 없다를 나타낸다
+
+ㅇㄴ
