@@ -48,3 +48,6 @@ while(cap.isOpened()):
         break
  
 cap.release()
+
+
+darknet.free_image(frame) 

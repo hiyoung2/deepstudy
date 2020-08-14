@@ -67,19 +67,53 @@
 
 ##########################################################################
 # Request Parameter
+# 사용예시는 pyweb 폴더 참고
 
 # MultiDict Type
 # ...get('<param name>', <default-value>, <type>)
+#             (1)               (2)         (3)
 # methods: get, getlist, clear, etc
+
+# parameter 정말 많이 쓴다
+# 대부분 파라미터 가지고 작업을 하기 때문에 잘 알아야 한다
+# 파라미터의 dtype = MultiDict
+# 딕셔너리 같은 건데 더 확장된 버전이다
+# get 뒤에 (1) : 파라미터의 이름, (2) : 디폴트 값(파라미터 값이 정의 되지 않았을 때), (3) :int라고 하면 int형으로 받는다
+# client로부터 server로 오는 것은 무엇이든 string 형태로 받기 때문에, 필요에 따라 type을 지정해 주면 된다
 
 # GET
 # request.args.get('q')
 
 # POST
-# request.from.get('p', 123)
+# request.form.get('p', 123)
+# post를 쓸 때에는 args가 아닌 form을 써야 한다
+# form submit 할 때는 POST로 보낸다
+# 로그인 페이지라면 아이디와 패스워드를 form.get('id') or form.get('password')를 할 수 있다
+# 오른쪽 123은 값을 안 줬을 때 default값으로 적용할 값
+
 
 # GET or POST
 # request.values.get('v')
+# get, post가 헷갈린다면 values를 쓰면 된다
+# get이든 post든 파라미터 모두 받는다
 
 # Parameters
 # request.args.getlist('qs')
+# list형태로, 여러 가지 변수들을 한 번에 받을 수 있다 -> pyweb 참고
+
+
+##########################################################################
+# Request Parameter Custom Function Type
+# request 처리용 함수
+
+from datetime import datetime, data
+def ymd(fmt):
+    def trans(date_str):
+        return datetime.strptime(date_str, fmt)
+    return trans
+
+@app.route('/dt')
+def dt():
+    datestr = request.values.get('date', date.tody(), type=ymd('%Y-%m-%d'))
+                             # parametername # default # type(현재 함수가 붙었음 , ymd 함수는 위에 정의되어 있음)
+    return "우리나라 시간 형식: " + str(datestr)
