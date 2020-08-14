@@ -24,3 +24,26 @@
 # --problem_output--
 # 첫째 줄에 형택이의 곱셈 결과를 출력한다.
 
+import sys
+A, B = sys.stdin.readline().split()
+
+# print(A, B) #123 45
+
+n = len(A)
+m = len(B)
+
+print(n, m)
+
+# for i in range(len(A)):
+#     print(A[i])
+
+
+
+    # for j in range(len(B)):
+    #     print(B[j])
+
+# A = "123"
+# print(a[1]) # 2
+# B = "45"
+
+# print(int(a[0]) * int(b[0]))
