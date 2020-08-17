@@ -21,19 +21,3 @@
 # --problem_output--
 # 첫째 줄에 답을 출력한다.
 
-import sys
-
-height = []
-for i in range(9):
-    h = int(sys.stdin.readline())
-    height.append(h)
-# print(height)
-
-height.sort()
-# print(height)
-
-result = 0
-for i in range(len(height)):
-    result += height[i]
-    if result == 100:
-        print("끝")

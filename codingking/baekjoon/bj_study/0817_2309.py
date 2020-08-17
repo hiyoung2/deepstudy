@@ -27,8 +27,15 @@ for i in range(9):
     height.append(h)
 # print(height)
 
-height.sort()
+# height.sort()
 # print(height)
 
-# for i in range(len(height)):
-    
+##########################################
+from itertools import combinations
+
+a = list(combinations(height, 7))
+
+for i in a:
+    if sum(i) == 100:
+        print(*sorted(i), sep='\n')
+        break
