@@ -230,4 +230,55 @@ y_train = train['digit']
 # 가변수(dummy variable)로 만들어주는 것인데, 이는 0과 1로 이루어진 열을 나타낸다
 # 1은 있다, 0은 없다를 나타낸다
 
-ㅇㄴ
+print(x_train.head()) # [5 rows x 810 columns]
+print()
+print(y_train) # Name: digit, Length: 2048, dtype: int64
+
+
+# train set을 8:2로 분리
+from sklearn.model_selection import train_test_split
+
+x_train, x_valid, y_train, y_valid = train_test_split(
+    x_train, y_train, train_size = 0.8, random_state = 77
+)
+
+from lightgbm import LGBMClassifier
+
+lgb = LGBMClassifier(boosting_type='gbdt', class_weight=None, colsample_bytree=0.7,
+               importance_type='split', learning_rate=0.1,
+               max_depth=9, min_child_samples=20, min_child_weight=0.001,
+               min_split_gain=0.0, n_estimators=1000, n_jobs=-1, num_leaves=511,
+               objective=None, random_state=None, reg_alpha=0.0, reg_lambda=0.0,
+               silent=True, subsample=1.0, subsample_for_bin=200000,
+               subsample_freq=0)
+
+lgb.fit(x_train, y_train)
+
+print((lgb.predict(x_valid) == y_valid.values).sum() / len(y_valid))
+
+x_test = pd.concat(
+    (pd.get_dummies(test.letter), test[[str(i) for i in range(784)]]), axis=1)
+
+submission.digit = lgb.predict(x_test)
+
+submission.to_csv('./dacon/dacon_emnist/submit/submission_0817_2.csv', index=False)
+
+# 0.05 : 0.5292682926829269
+# 0.06 : 0.551219512195122
+# 0.07 : 0.5487804878048781
+# 0.08 : 0.5487804878048781
+# 0.09 : 0.5463414634146342
+# 0.1 : 0.551219512195122
+
+
+'''
+lgb = LGBMClassifier(boosting_type='gbdt', class_weight=None, colsample_bytree=0.7,
+               importance_type='split', learning_rate=0.1,
+               max_depth=9, min_child_samples=20, min_child_weight=0.001,
+               min_split_gain=0.0, n_estimators=1000, n_jobs=-1, num_leaves=511,
+               objective=None, random_state=None, reg_alpha=0.0, reg_lambda=0.0,
+               silent=True, subsample=1.0, subsample_for_bin=200000,
+               subsample_freq=0)
+# 0.5804878048780487
+
+'''
