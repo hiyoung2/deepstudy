@@ -42,7 +42,8 @@ while(cap.isOpened()):
         cv2.line(image, (top + int(w / 2), left), (top + int(w / 2), left + int(h)), (0,255,0), 3) 
         cv2.line(image, (top, left + int(h / 2)), (top + int(w), left + int(h / 2)), (0,255,0), 3) 
         cv2.circle(image, (top + int(w / 2), left + int(h / 2)), 2, tuple((0,0,255)), 5)
- 
+
+    darknet.free_image(frame) # (c언어 개념 : 동적메모리 할당)할당된 메모리를 해제해주는 코드
     cv2.imshow('frame', image) 
     if cv2.waitKey(1) & 0xFF == ord('q'): 
         break
@@ -50,4 +51,3 @@ while(cap.isOpened()):
 cap.release()
 
 
-darknet.free_image(frame) 

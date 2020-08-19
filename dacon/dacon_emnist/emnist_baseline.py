@@ -8,8 +8,8 @@ warnings.filterwarnings("ignore")
 import tensorflow as tf
 
 # load data
-train = pd.read_csv('./dacon/dacon_mnist/data/train.csv')
-test = pd.read_csv('./dacon/dacon_mnist/data/test.csv')
+train = pd.read_csv('./dacon/dacon_emnist/data/train.csv')
+test = pd.read_csv('./dacon/dacon_emnist/data/test.csv')
 
 # eda
 idx = 318
@@ -37,6 +37,10 @@ x_train = train.drop(['id', 'digit', 'letter'], axis=1).values
 x_train = x_train.reshape(-1, 28, 28, 1)
 x_train = x_train/255
 
+# print(x_train[:5, :])
+
+
+'''
 y = train['digit']
 y_train = np.zeros((len(y), len(y.unique())))
 for i, digit in enumerate(y):
@@ -79,9 +83,11 @@ x_test = test.drop(['id', 'letter'], axis=1).values
 x_test = x_test.reshape(-1, 28, 28, 1)
 x_test = x_test/255
 
-submission = pd.read_csv('./dacon/dacon_mnist/data/submission.csv')
+submission = pd.read_csv('./dacon/dacon_emnist/data/submission.csv')
 submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_mnist/submit/0811_third.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0811_third.csv', index=False)
+
+'''
