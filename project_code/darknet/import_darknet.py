@@ -45,9 +45,9 @@ while(cap.isOpened()):
         right = min(image.shape[1], np.floor(x + w + 0.5).astype(int)) 
         bottom = min(image.shape[0], np.floor(y + h + 0.5).astype(int)) 
         cv2.rectangle(image, (top, left), (right, bottom), (255, 0, 0), 2) 
-        cv2.line(image, (top + int(w / 2), left), (top + int(w / 2), left + int(h)), (0,255,0), 3) 
-        cv2.line(image, (top, left + int(h / 2)), (top + int(w), left + int(h / 2)), (0,255,0), 3) 
-        cv2.circle(image, (top + int(w / 2), left + int(h / 2)), 2, tuple((0,0,255)), 5)
+        # cv2.line(image, (top + int(w / 2), left), (top + int(w / 2), left + int(h)), (0,255,0), 3) 
+        # cv2.line(image, (top, left + int(h / 2)), (top + int(w), left + int(h / 2)), (0,255,0), 3) 
+        # cv2.circle(image, (top + int(w / 2), left + int(h / 2)), 2, tuple((0,0,255)), 5)
 
     darknet.free_image(frame) # (c언어 개념 : 동적메모리 할당)할당된 메모리를 해제해주는 코드 -> 쌓이는 메모리를 풀어준다?
     cv2.imshow('frame', image) 

@@ -24,3 +24,26 @@
 # --problem_output--
 # 첫째 줄에 패턴을 출력하면 된다.
 
+N = int(input())
+
+filename = []
+
+for i in range(N):
+    i = input()
+    filename.append(i)
+
+# print(filename) # ['config.sys', 'config.inf', 'configures']
+# print(filename[0][0]) # c
+
+spelling = []
+
+for a in range(len(filename)):
+    print(filename[a])
+
+    for b in range(len(filename[a])):
+        # print(filename[a][b])
+        spell = filename[a][b]
+        spelling.append(spell)
+    print(spelling)
+            
+        
