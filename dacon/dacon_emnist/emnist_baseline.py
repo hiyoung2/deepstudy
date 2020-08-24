@@ -50,22 +50,21 @@ def create_cnn_model(x_train):
     inputs = tf.keras.layers.Input(x_train.shape[1:])
 
     bn = tf.keras.layers.BatchNormalization()(inputs)
-    conv = tf.keras.layers.Conv2D(32, kernel_size=5, strides=1, padding='same', activation='relu')(bn)
+    conv = tf.keras.layers.Conv2D(128, kernel_size=5, strides=1, padding='same', activation='relu')(bn)
     bn = tf.keras.layers.BatchNormalization()(conv)
-    conv = tf.keras.layers.Conv2D(64, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    conv = tf.keras.layers.Conv2D(256, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
     pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
 
     bn = tf.keras.layers.BatchNormalization()(pool)
-    conv = tf.keras.layers.Conv2D(128, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    conv = tf.keras.layers.Conv2D(512, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
     bn = tf.keras.layers.BatchNormalization()(conv)
-    conv = tf.keras.layers.Conv2D(256, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    conv = tf.keras.layers.Conv2D(1024, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
     pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
 
     flatten = tf.keras.layers.Flatten()(pool)
 
     bn = tf.keras.layers.BatchNormalization()(flatten)
-    dense = tf.keras.layers.Dense(512, activation='relu')(bn)
-    dense = tf.keras.layers.Dense(1024, activation='relu')(dense)
+    dense = tf.keras.layers.Dense(900, activation='relu')(bn)
     
 
     bn = tf.keras.layers.BatchNormalization()(dense)
@@ -90,7 +89,7 @@ submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_emnist/submit/0824_03.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0825_03.csv', index=False)
 
 
 '''
@@ -127,7 +126,7 @@ submission.to_csv('./dacon/dacon_emnist/submit/0824_03.csv', index=False)
 '''
 
 '''
-0824_02
+0824_02 점수 : 0.75
     inputs = tf.keras.layers.Input(x_train.shape[1:])
 
     bn = tf.keras.layers.BatchNormalization()(inputs)
@@ -159,7 +158,7 @@ submission.to_csv('./dacon/dacon_emnist/submit/0824_03.csv', index=False)
 '''
 
 '''
-0824_03
+0824_03 점수 : 	0.7401960784
 
     inputs = tf.keras.layers.Input(x_train.shape[1:])
 
@@ -191,4 +190,104 @@ epo 20
 Epoch 20/20
 2048/2048 [==============================] - 0s 228us/sample - loss: 0.0481 - accuracy: 0.9824
 
+'''
+
+'''
+0825_1 점수 : 0.75
+
+    inputs = tf.keras.layers.Input(x_train.shape[1:])
+
+    bn = tf.keras.layers.BatchNormalization()(inputs)
+    conv = tf.keras.layers.Conv2D(256, kernel_size=5, strides=1, padding='same', activation='relu')(bn)
+    bn = tf.keras.layers.BatchNormalization()(conv)
+    conv = tf.keras.layers.Conv2D(256, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
+
+    bn = tf.keras.layers.BatchNormalization()(pool)
+    conv = tf.keras.layers.Conv2D(512, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    bn = tf.keras.layers.BatchNormalization()(conv)
+    conv = tf.keras.layers.Conv2D(512, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
+
+    flatten = tf.keras.layers.Flatten()(pool)
+
+    bn = tf.keras.layers.BatchNormalization()(flatten)
+    dense = tf.keras.layers.Dense(1024, activation='relu')(bn)
+    
+
+    bn = tf.keras.layers.BatchNormalization()(dense)
+    outputs = tf.keras.layers.Dense(10, activation='softmax')(bn)
+
+    epo20
+Epoch 20/20
+2048/2048 [==============================] - 2s 809us/sample - loss: 0.0888 - accuracy: 0.9702
+
+
+0825_2  점수 : 	0.8137254902
+def create_cnn_model(x_train):
+    inputs = tf.keras.layers.Input(x_train.shape[1:])
+
+    bn = tf.keras.layers.BatchNormalization()(inputs)
+    conv = tf.keras.layers.Conv2D(128, kernel_size=5, strides=1, padding='same', activation='relu')(bn)
+    bn = tf.keras.layers.BatchNormalization()(conv)
+    conv = tf.keras.layers.Conv2D(256, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
+
+    bn = tf.keras.layers.BatchNormalization()(pool)
+    conv = tf.keras.layers.Conv2D(512, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    bn = tf.keras.layers.BatchNormalization()(conv)
+    conv = tf.keras.layers.Conv2D(1024, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
+
+    flatten = tf.keras.layers.Flatten()(pool)
+
+    bn = tf.keras.layers.BatchNormalization()(flatten)
+    dense = tf.keras.layers.Dense(512, activation='relu')(bn)
+    
+
+    bn = tf.keras.layers.BatchNormalization()(dense)
+    outputs = tf.keras.layers.Dense(10, activation='softmax')(bn)
+
+    model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
+
+    return model
+epo20
+Epoch 20/20
+2048/2048 [==============================] - 2s 884us/sample - loss: 0.0140 - accuracy: 0.9976
+'''
+
+'''
+0825_03 점수 : 0.8039215686
+
+def create_cnn_model(x_train):
+    inputs = tf.keras.layers.Input(x_train.shape[1:])
+
+    bn = tf.keras.layers.BatchNormalization()(inputs)
+    conv = tf.keras.layers.Conv2D(128, kernel_size=5, strides=1, padding='same', activation='relu')(bn)
+    bn = tf.keras.layers.BatchNormalization()(conv)
+    conv = tf.keras.layers.Conv2D(256, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
+
+    bn = tf.keras.layers.BatchNormalization()(pool)
+    conv = tf.keras.layers.Conv2D(512, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    bn = tf.keras.layers.BatchNormalization()(conv)
+    conv = tf.keras.layers.Conv2D(1024, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
+
+    flatten = tf.keras.layers.Flatten()(pool)
+
+    bn = tf.keras.layers.BatchNormalization()(flatten)
+    dense = tf.keras.layers.Dense(900, activation='relu')(bn)
+    
+
+    bn = tf.keras.layers.BatchNormalization()(dense)
+    outputs = tf.keras.layers.Dense(10, activation='softmax')(bn)
+
+    model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
+
+    return model
+
+epo20
+Epoch 20/20
+2048/2048 [==============================] - 2s 1ms/sample - loss: 0.0184 - accuracy: 0.9951
 '''
