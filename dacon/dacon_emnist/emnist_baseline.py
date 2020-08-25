@@ -64,7 +64,7 @@ def create_cnn_model(x_train):
     flatten = tf.keras.layers.Flatten()(pool)
 
     bn = tf.keras.layers.BatchNormalization()(flatten)
-    dense = tf.keras.layers.Dense(900, activation='relu')(bn)
+    dense = tf.keras.layers.Dense(1000, activation='relu')(bn)
     
 
     bn = tf.keras.layers.BatchNormalization()(dense)
@@ -76,8 +76,8 @@ def create_cnn_model(x_train):
 
 
 model = create_cnn_model(x_train)
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(x_train, y_train, epochs=20)
+model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=32)
 
 # predict
 x_test = test.drop(['id', 'letter'], axis=1).values
@@ -89,7 +89,7 @@ submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_emnist/submit/0825_03.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0826_04.csv', index=False)
 
 
 '''
@@ -124,7 +124,6 @@ submission.to_csv('./dacon/dacon_emnist/submit/0825_03.csv', index=False)
 2048/2048 [==============================] - 2s 1ms/sample - loss: 0.0167 - accuracy: 0.9961
 
 '''
-
 '''
 0824_02 점수 : 0.75
     inputs = tf.keras.layers.Input(x_train.shape[1:])
@@ -290,4 +289,114 @@ def create_cnn_model(x_train):
 epo20
 Epoch 20/20
 2048/2048 [==============================] - 2s 1ms/sample - loss: 0.0184 - accuracy: 0.9951
+'''
+
+'''
+0826_01
+
+
+def create_cnn_model(x_train):
+    inputs = tf.keras.layers.Input(x_train.shape[1:])
+
+    bn = tf.keras.layers.BatchNormalization()(inputs)
+    conv = tf.keras.layers.Conv2D(128, kernel_size=5, strides=1, padding='same', activation='relu')(bn)
+    bn = tf.keras.layers.BatchNormalization()(conv)
+    conv = tf.keras.layers.Conv2D(256, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
+
+    bn = tf.keras.layers.BatchNormalization()(pool)
+    conv = tf.keras.layers.Conv2D(512, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    bn = tf.keras.layers.BatchNormalization()(conv)
+    conv = tf.keras.layers.Conv2D(1024, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
+    pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
+
+    flatten = tf.keras.layers.Flatten()(pool)
+
+    bn = tf.keras.layers.BatchNormalization()(flatten)
+    dense = tf.keras.layers.Dense(1024, activation='relu')(bn)
+    
+
+    bn = tf.keras.layers.BatchNormalization()(dense)
+    outputs = tf.keras.layers.Dense(10, activation='softmax')(bn)
+
+    model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
+
+    return model
+
+epo 20
+Epoch 20/20
+2048/2048 [==============================] - 2s 1ms/sample - loss: 0.1107 - accuracy: 0.9604
+
+0826_01_1
+모델 동일 
+epo 15
+Epoch 15/15
+2048/2048 [==============================] - 2s 1ms/sample - loss: 0.0628 - accuracy: 0.9775
+
+'''
+
+'''
+0826_02
+
+128
+256
+512
+1024
+512
+
+epo 32
+
+Epoch 32/32
+2048/2048 [==============================] - 2s 942us/sample - loss: 0.0933 - accuracy: 0.9688
+
+25, 26 : acc 1.0
+
+0826_02_1
+위와 동일
+epo 24
+
+Epoch 24/24
+2048/2048 [==============================] - 2s 917us/sample - loss: 0.0148 - accuracy: 0.9961(가장 점수 높은 파일이랑 최종acc 같음)
+'''
+
+'''
+0826_03
+128
+256
+512
+1024
+512
+
+epo 16
+Epoch 16/16
+2048/2048 [==============================] - 2s 918us/sample - loss: 0.0699 - accuracy: 0.9805
+'''
+
+'''
+0826_03_1
+128
+256
+512
+1024
+1024
+
+epo 16
+Epoch 16/16
+2048/2048 [==============================] - 2s 1ms/sample - loss: 0.0705 - accuracy: 0.9790
+'''
+
+'''
+0826_04
+128
+256
+512
+1024
+1000
+
+optimizer = sgd
+epo 32
+
+Epoch 32/32
+2048/2048 [==============================] - 2s 912us/sample - loss: 0.0027 - accuracy: 1.0000
+
 '''
