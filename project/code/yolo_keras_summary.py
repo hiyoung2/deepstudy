@@ -159,7 +159,7 @@ class WeightReader:
 # define the model
 model = make_yolov3_model()
 # load the model weights
-weight_reader = WeightReader('D:/yolov3.weights')
+weight_reader = WeightReader('D:/backup/myyolov3_final.weights')
 # set the model weights into the model
 weight_reader.load_weights(model)
 # save the model to file
@@ -341,7 +341,7 @@ model = load_model('model.h5')
 # define the expected input shape for the model
 input_w, input_h = 416, 416
 # define our new photo
-photo_filename = 'D:/zebra.jpg'
+photo_filename = 'D:/test.jpg'
 # load and prepare image
 image, image_w, image_h = load_image_pixels(photo_filename, (input_w, input_h))
 # make prediction
@@ -361,16 +361,19 @@ correct_yolo_boxes(boxes, image_h, image_w, input_h, input_w)
 # suppress non-maximal boxes
 do_nms(boxes, 0.5)
 # define the labels
-labels = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck",
-	"boat", "traffic light", "fire hydrant", "stop sign", "parking meter", "bench",
-	"bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe",
-	"backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard",
-	"sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard",
-	"tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana",
-	"apple", "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake",
-	"chair", "sofa", "pottedplant", "bed", "diningtable", "toilet", "tvmonitor", "laptop", "mouse",
-	"remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator",
-	"book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"]
+# labels = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck",
+# 	"boat", "traffic light", "fire hydrant", "stop sign", "parking meter", "bench",
+# 	"bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe",
+# 	"backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard",
+# 	"sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard",
+# 	"tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana",
+# 	"apple", "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake",
+# 	"chair", "sofa", "pottedplant", "bed", "diningtable", "toilet", "tvmonitor", "laptop", "mouse",
+# 	"remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator",
+# 	"book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"]
+
+labels = ["fighting", "normal"]
+
 # get the details of the detected objects
 v_boxes, v_labels, v_scores = get_boxes(boxes, labels, class_threshold)
 # summarize what we found
