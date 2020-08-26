@@ -64,7 +64,9 @@ def create_cnn_model(x_train):
     flatten = tf.keras.layers.Flatten()(pool)
 
     bn = tf.keras.layers.BatchNormalization()(flatten)
-    dense = tf.keras.layers.Dense(1000, activation='relu')(bn)
+    dense = tf.keras.layers.Dense(512, activation='relu')(bn)
+    dense = tf.keras.layers.Dense(256, activation='relu')(bn)
+    dense = tf.keras.layers.Dense(128, activation='relu')(bn)
     
 
     bn = tf.keras.layers.BatchNormalization()(dense)
@@ -76,8 +78,8 @@ def create_cnn_model(x_train):
 
 
 model = create_cnn_model(x_train)
-model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
-model.fit(x_train, y_train, epochs=32)
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=20)
 
 # predict
 x_test = test.drop(['id', 'letter'], axis=1).values
@@ -89,7 +91,7 @@ submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_emnist/submit/0826_04.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0827_03.csv', index=False)
 
 
 '''
@@ -401,4 +403,36 @@ epo 32
 Epoch 32/32
 2048/2048 [==============================] - 2s 912us/sample - loss: 0.0027 - accuracy: 1.0000
 
+'''
+'''
+0827_01
+128
+256
+512
+1024
+1000
+epo 32 
+Epoch 32/32
+2048/2048 [==============================] - 2s 1ms/sample - loss: 0.0049 - accuracy: 0.9980
+'''
+'''
+0827_02
+128
+256
+512
+1024
+flatten
+512
+256
+128
+epo 32
+Epoch 32/32
+2048/2048 [==============================] - 2s 818us/sample - loss: 7.4169e-04 - accuracy: 1.0000
+'''
+'''
+0827_03
+02와 모델 구성 동일
+epo 20
+Epoch 20/20
+2048/2048 [==============================] - 2s 820us/sample - loss: 0.0018 - accuracy: 1.0000
 '''
