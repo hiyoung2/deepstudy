@@ -64,6 +64,8 @@ def create_cnn_model(x_train):
     flatten = tf.keras.layers.Flatten()(pool)
 
     bn = tf.keras.layers.BatchNormalization()(flatten)
+    dense = tf.keras.layers.Dense(2048, activation='relu')(bn)
+    dense = tf.keras.layers.Dense(1024, activation='relu')(bn)
     dense = tf.keras.layers.Dense(512, activation='relu')(bn)
     dense = tf.keras.layers.Dense(256, activation='relu')(bn)
     dense = tf.keras.layers.Dense(128, activation='relu')(bn)
@@ -91,7 +93,7 @@ submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_emnist/submit/0827_03.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0828_03.csv', index=False)
 
 
 '''
@@ -308,11 +310,60 @@ Epoch 32/32
 ########################################################################################################
 0827_03 점수 : 0.862745098	
 02와 모델 구성 동일
-
-
 epo 20
 Epoch 20/20
 2048/2048 [==============================] - 2s 820us/sample - loss: 0.0018 - accuracy: 1.0000
 ########################################################################################################
 
+'''
+
+'''
+0828_01 점수 : 	0.7647058824
+128
+256
+512
+1024
+flatten
+512
+256
+128
+64
+
+epo 20
+Epoch 20/20
+2048/2048 [==============================] - 2s 784us/sample - loss: 0.0531 - accuracy: 0.9863
+'''
+'''
+0828_02 점수 : 0.8382352941
+128
+256
+512
+1024
+flatten
+1024
+512
+256
+128
+
+epo20
+Epoch 20/20
+2048/2048 [==============================] - 2s 805us/sample - loss: 0.0030 - accuracy: 1.0000
+'''
+
+'''
+0828_03 점수 : 0.8480392157
+128
+256
+512
+1024
+flatten
+2048
+1024
+512
+256
+128
+
+epo20
+Epoch 20/20
+2048/2048 [==============================] - 2s 802us/sample - loss: 0.0026 - accuracy: 1.0000
 '''

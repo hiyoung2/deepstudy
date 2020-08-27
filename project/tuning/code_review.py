@@ -49,7 +49,8 @@ def frozen_resnet(input_size, n_classes):
 
     for layer in model_.layers:
         layer.trainable = False # frozen 상태로 가중치만 가져온다
-    x = Flatten(input_shape=model_.output_shape[1:])(model_.layers[-1].output)
+    # x = Flatten(input_shape=model_.output_shape[1:])(model_.layers[-1].output)
+    x = Flatten()(model_.layers[-1].output)
     x = Dropout(0.5)(x)
     x = Dense(n_classes, activation='softmax')(x)
     # output layer, n_classes : 클래스 개수(라벨의 개수)
@@ -82,7 +83,8 @@ model.compile(
 )
 
 steps_per_epoch_train = int((1620) / batch_size)
-model_path_finetune = 'model_finetuned.h5'
+# model_path_finetune = 'model_finetuned.h5'
+model_path_finetune = './model_finetuned.h5'
 
 datagen = ImageDataGenerator(
     preprocessing_function=preprocess_input,
@@ -93,7 +95,8 @@ datagen = ImageDataGenerator(
     validation_split= 0.2
 )
 
-dataset_path = 'D:/python_module/darknet-master/build/darknet/x64/project/flow_from'
+# dataset_path = 'D:/python_module/darknet-master/build/darknet/x64/project/flow_from'
+dataset_path = 'D:/deepstudy/project/cnn/data/train'
 
 train_gen = datagen.flow_from_directory(
     directory=dataset_path,
