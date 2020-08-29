@@ -64,7 +64,7 @@ def create_cnn_model(x_train):
     flatten = tf.keras.layers.Flatten()(pool)
 
     bn = tf.keras.layers.BatchNormalization()(flatten)
-    dense = tf.keras.layers.Dense(2048, activation='relu')(bn)
+    # dense = tf.keras.layers.Dense(2048, activation='relu')(bn)
     dense = tf.keras.layers.Dense(1024, activation='relu')(bn)
     dense = tf.keras.layers.Dense(512, activation='relu')(bn)
     dense = tf.keras.layers.Dense(256, activation='relu')(bn)
@@ -81,7 +81,7 @@ def create_cnn_model(x_train):
 
 model = create_cnn_model(x_train)
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(x_train, y_train, epochs=20)
+model.fit(x_train, y_train, epochs=64)
 
 # predict
 x_test = test.drop(['id', 'letter'], axis=1).values
@@ -93,7 +93,7 @@ submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_emnist/submit/0828_03.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0829_03.csv', index=False)
 
 
 '''
@@ -307,13 +307,11 @@ Epoch 32/32
 '''
 
 '''
-########################################################################################################
 0827_03 점수 : 0.862745098	
 02와 모델 구성 동일
 epo 20
 Epoch 20/20
 2048/2048 [==============================] - 2s 820us/sample - loss: 0.0018 - accuracy: 1.0000
-########################################################################################################
 
 '''
 
@@ -366,4 +364,54 @@ flatten
 epo20
 Epoch 20/20
 2048/2048 [==============================] - 2s 802us/sample - loss: 0.0026 - accuracy: 1.0000
+'''
+'''
+0829_01 점수 : 0.87745################################################
+128
+256
+512
+1024
+flatten
+512
+256
+128
+epo 64
+
+Epoch 61/64
+2048/2048 [==============================] - 2s 816us/sample - loss: 4.7677e-04 - accuracy: 1.0000
+Epoch 62/64
+2048/2048 [==============================] - 2s 827us/sample - loss: 5.1921e-04 - accuracy: 1.0000
+Epoch 63/64
+2048/2048 [==============================] - 2s 830us/sample - loss: 5.7034e-04 - accuracy: 1.0000
+Epoch 64/64
+2048/2048 [==============================] - 2s 833us/sample - loss: 4.3024e-04 - accuracy: 1.0000
+'''
+'''
+0829_02 점수 : 0.8578431373	
+위와 모델 동일
+epo 128
+
+Epoch 125/128
+2048/2048 [==============================] - 2s 882us/sample - loss: 1.6184e-05 - accuracy: 1.0000
+Epoch 126/128
+2048/2048 [==============================] - 2s 879us/sample - loss: 1.4242e-05 - accuracy: 1.0000
+Epoch 127/128
+2048/2048 [==============================] - 2s 873us/sample - loss: 1.4447e-05 - accuracy: 1.0000
+Epoch 128/128
+2048/2048 [==============================] - 2s 879us/sample - loss: 1.5875e-05 - accuracy: 1.0000
+'''
+
+'''
+0829_03 점수 : 	0.8823529412
+128
+256
+512
+1024
+flatten
+1024
+512
+256
+128
+
+epo64
 '''
