@@ -13,11 +13,11 @@ import matplotlib.pyplot as plt
 
 def callbacks(model_path, patience):
     callbacks = [
-        ReduceLROnPlateau(patience=3), 
+        ReduceLROnPlateau(monitor = 'val_loss', factor = 0.1, 
+                          patience = 10), 
         ModelCheckpoint(model_path, monitor='val_loss', 
                         verbose=1, save_best_only=True),
-        EarlyStopping(patience=patience)  
-    ]
+        EarlyStopping(patience=patience)]
     return callbacks
 
 
@@ -28,7 +28,6 @@ def frozen_resnet(input_size, n_classes):
     for layer in model_.layers:
         layer.trainable = False
     x = Flatten()(model_.layers[-1].output)
-    x = Dropout(0.5)(x)
     x = Dense(n_classes, activation='sigmoid')(x)
     frozen_model = Model(model_.input, x)
 
