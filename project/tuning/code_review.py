@@ -44,14 +44,13 @@ def callbacks(model_path, patience):
 def frozen_resnet(input_size, n_classes):
     model_ = ResNet50V2(include_top=False, input_tensor=Input(shape=input_size))
     # include_top = False : flatten() layer 전 층까지만 가져다 쓴다
-    # include_top = Ture : flatten() layer 까지 다 가져 와서 쓴다
+    # include_top = True : flatten() layer 까지 다 가져 와서 쓴다
     # input_size : 사용할 이미지 크기
 
     for layer in model_.layers:
         layer.trainable = False # frozen 상태로 가중치만 가져온다
     # x = Flatten(input_shape=model_.output_shape[1:])(model_.layers[-1].output)
     x = Flatten()(model_.layers[-1].output)
-    x = Dropout(0.5)(x)
     x = Dense(n_classes, activation='softmax')(x)
     # output layer, n_classes : 클래스 개수(라벨의 개수)
     frozen_model = Model(model_.input, x)
@@ -92,25 +91,24 @@ datagen = ImageDataGenerator(
     zoom_range=0.3,
     width_shift_range=0.3,
     height_shift_range=0.3,
-    validation_split= 0.2
-)
+    validation_split= 0.2)
 
 # dataset_path = 'D:/python_module/darknet-master/build/darknet/x64/project/flow_from'
 dataset_path = 'D:/deepstudy/project/cnn/data/train'
 
 train_gen = datagen.flow_from_directory(
     directory=dataset_path,
-    shuffle=True,
     batch_size=batch_size,
     target_size=input_size[:-1],
-    # classes=classes,
+    class_mode = 'binary',
+    shuffle=True,
     subset='training')
 
 val_gen = datagen.flow_from_directory(
     directory=dataset_path,
     batch_size=batch_size,
     target_size=input_size[:-1],
-    # classes=classes,
+    class_mode = 'binary',
     shuffle=True,
     subset='validation')
 
