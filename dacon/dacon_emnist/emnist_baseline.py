@@ -64,12 +64,11 @@ def create_cnn_model(x_train):
     flatten = tf.keras.layers.Flatten()(pool)
 
     bn = tf.keras.layers.BatchNormalization()(flatten)
-    # dense = tf.keras.layers.Dense(2048, activation='relu')(bn)
     dense = tf.keras.layers.Dense(1024, activation='relu')(bn)
     dense = tf.keras.layers.Dense(512, activation='relu')(bn)
     dense = tf.keras.layers.Dense(256, activation='relu')(bn)
     dense = tf.keras.layers.Dense(128, activation='relu')(bn)
-    
+ 
 
     bn = tf.keras.layers.BatchNormalization()(dense)
     outputs = tf.keras.layers.Dense(10, activation='softmax')(bn)
@@ -80,7 +79,7 @@ def create_cnn_model(x_train):
 
 
 model = create_cnn_model(x_train)
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=64)
 
 # predict
@@ -93,7 +92,7 @@ submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_emnist/submit/0829_03.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0903_03.csv', index=False)
 
 
 '''
@@ -414,4 +413,126 @@ flatten
 128
 
 epo64
+'''
+
+'''
+0902_01 점수 : 	0.7892156863
+128
+256
+512
+1024
+flatten
+1024
+512
+256
+128
+dropout0.3
+
+epo128
+Epoch 128/128
+2048/2048 [==============================] - 2s 853us/sample - loss: 0.1853 - accuracy: 0.9902
+'''
+
+'''
+0902_02 점수 : 	0.7794117647
+128
+256
+512
+1024
+flatten
+1024
+dropuout0.4
+512
+dropuout0.3
+256
+dropuout0.2
+128
+dropout0.1
+
+epo 64
+Epoch 64/64
+2048/2048 [==============================] - 2s 787us/sample - loss: 0.5028 - accuracy: 0.9697
+'''
+
+'''
+0902_03 점수 : 
+
+128
+256
+512
+1024
+2048
+flatten
+2048
+1024
+512
+256
+128
+
+epo 64
+Epoch 64/64
+2048/2048 [==============================] - 2s 1ms/sample - loss: 2.5864e-04 - accuracy: 1.0000
+'''
+
+'''
+0903_01 점수 : 	0.8284313725
+128
+256
+512
+1024
+2048
+flatten
+2048
+dropout(0.3)
+1024
+512
+256
+128
+
+epo 64
+Epoch 64/64
+2048/2048 [==============================] - 2s 1ms/sample - loss: 8.1232e-04 - accuracy: 1.0000
+'''
+
+'''
+0903_02 점수 : 	0.8480392157	
+128
+256
+512
+1024
+2048
+maxpool (4, 4)
+flatten
+2048
+dropout(0.3)
+1024
+512
+256
+128
+
+epo64
+Epoch 64/64
+2048/2048 [==============================] - 2s 1ms/sample - loss: 1.1788e-04 - accuracy: 1.0000
+
+'''
+
+'''
+0903_03 점수 : 0.8382352941	
+128
+256
+512
+1024
+flatten()
+1024
+512
+256
+128
+
+rmsprop
+epo64
+
+Epoch 63/64
+2048/2048 [==============================] - 2s 901us/sample - loss: 0.0031 - accuracy: 0.9980
+Epoch 64/64
+2048/2048 [==============================] - 2s 905us/sample - loss: 2.4246e-04 - accuracy: 1.0000
 '''
