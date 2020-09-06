@@ -1,5 +1,5 @@
 from keras.callbacks import ReduceLROnPlateau, ModelCheckpoint, EarlyStopping
-from keras.applications.resnet_v2 import ResNet50V2, preprocess_input
+from keras.applications.resnet_v2 import preprocess_input, ResNet50V2
 from keras.models import Model
 from keras.optimizers import Adam
 from keras.layers import Flatten, Dropout, Dense, Input
@@ -9,7 +9,7 @@ def callbacks(model_path, patience):
     callbacks = [
         ReduceLROnPlateau(patience=3),  # TODO Change to cyclic LR
         # ReduceLROnPlateau 
-        # keras의 callback 함수, 학습률이 개선되지 않을 때, 학습률을 동적으로 저정, 학습률을 개선하는 효과 기대
+        # keras의 callback 함수, 학습률이 개선되지 않을 때, 학습률을 동적으로 조정, 학습률을 개선하는 효과 기대
         # 경사하강법에 의해 학습을 하는 경우, local minima에 빠져버리게 되면, 더이상 학습률 개선X or 정체 or 심하게 튀는 현상 발생
         # Local Minima에 빠져버린 경우, 쉽게 빠져나오지 못하고 갇혀버리게 됨, 이 때 learning rate를 늘리거나 줄여주는 방법으로 빠져나오는 효과 기대 가능
         # Parameteres

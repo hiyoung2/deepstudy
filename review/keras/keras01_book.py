@@ -10,6 +10,7 @@ print("y.shape :", y.shape) # (10, )
 from keras.models import Sequential
 from keras.layers import Dense
 
+
 # 2. 모델 
 model = Sequential()
 model.add(Dense(1, input_dim = 1, activation = 'relu'))
