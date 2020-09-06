@@ -79,8 +79,8 @@ def create_cnn_model(x_train):
 
 
 model = create_cnn_model(x_train)
-model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
-model.fit(x_train, y_train, epochs=64)
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=128)
 
 # predict
 x_test = test.drop(['id', 'letter'], axis=1).values
@@ -92,7 +92,7 @@ submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_emnist/submit/0903_03.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0906_03.csv', index=False)
 
 
 '''
