@@ -50,7 +50,7 @@ def create_cnn_model(x_train):
     inputs = tf.keras.layers.Input(x_train.shape[1:])
 
     bn = tf.keras.layers.BatchNormalization()(inputs)
-    conv = tf.keras.layers.Conv2D(128, kernel_size=5, strides=1, padding='same', activation='relu')(bn)
+    conv = tf.keras.layers.Conv2D(128, kernel_initializer = 'he_uniform', kernel_size=5, strides=1, padding='same', activation='relu')(bn)
     bn = tf.keras.layers.BatchNormalization()(conv)
     conv = tf.keras.layers.Conv2D(256, kernel_size=2, strides=1, padding='same', activation='relu')(bn)
     pool = tf.keras.layers.MaxPooling2D((2, 2))(conv)
@@ -80,7 +80,7 @@ def create_cnn_model(x_train):
 
 model = create_cnn_model(x_train)
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(x_train, y_train, epochs=128)
+model.fit(x_train, y_train, epochs=64)
 
 # predict
 x_test = test.drop(['id', 'letter'], axis=1).values
@@ -92,7 +92,7 @@ submission['digit'] = np.argmax(model.predict(x_test), axis=1)
 submission.head()
 
 # submit
-submission.to_csv('./dacon/dacon_emnist/submit/0906_03.csv', index=False)
+submission.to_csv('./dacon/dacon_emnist/submit/0908_02.csv', index=False)
 
 
 '''
