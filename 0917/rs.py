@@ -34,7 +34,7 @@ def load_train(train_path, image_size, classes):
         # make a file list
         files = glob.glob(path)
         for file in files:
-            # dowin-sizint images
+            # dowin-sizing images
             image = cv2.imread(file, 0)
             image = cv2.resize(image, (image_size, image_size), 0, 0, cv2.INTER_AREA)
 
@@ -104,7 +104,7 @@ def create_hyperparameters():
 
     batches = [8, 32, 64, 128, 256]
     optimizers = [RMSprop, Adam, Adadelta, Adagrad, SGD, Nadam]
-    lr = [1e-5, 1e-4, 1e-3, 1e-2]
+    lr = [1e-4, 1e-3, 1e-2]
     dropout = [0.1, 0.2, 0.3, 0.4]
     activation = ['relu', 'elu', 'selu', 'tanh', 'sigmoid', LeakyReLU()]
     kernel_size = [2, 3, 4]
