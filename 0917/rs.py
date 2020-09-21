@@ -99,8 +99,6 @@ def build_model(dropout = 0.1, optimizer = 'adam', learning_rate = 0.1, activati
     return model
 
 
-# model = tf.keras.wrappers.scikit_learn.KerasClassifier(build_fn = build_model, verbose = 1)
-model = tf.keras.wrappers.scikit_learn.KerasClassifier(build_fn=build_model, verbose=1)
 
 def create_hyperparameters():
 
@@ -116,6 +114,7 @@ def create_hyperparameters():
             "dropout": dropout, "activation": activation, "kernel_size": kernel_size, "epochs": epochs}
 
 
+model = tf.keras.wrappers.scikit_learn.KerasClassifier(build_fn=build_model, verbose=1)
 
 hyperparams = create_hyperparameters()
 
