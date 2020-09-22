@@ -102,13 +102,13 @@ def build_model(dropout = 0.1, optimizer = 'adam', learning_rate = 0.1, activati
 
 def create_hyperparameters():
 
-    batches = [8, 32, 64, 128, 256]
+    batches = [8, 32, 64]
     optimizers = [RMSprop, Adam, Adadelta, Adagrad, SGD, Nadam]
     lr = [1e-4, 1e-3, 1e-2]
     dropout = [0.1, 0.2, 0.3, 0.4]
     activation = ['relu', 'elu', 'selu', 'tanh', 'sigmoid', LeakyReLU()]
     kernel_size = [2, 3, 4]
-    epochs = [64, 128, 256, 512]
+    epochs = [64, 128, 256]
 
     return {"batch_size": batches, "optimizer": optimizers, "learning_rate": lr,
             "dropout": dropout, "activation": activation, "kernel_size": kernel_size, "epochs": epochs}
