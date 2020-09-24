@@ -101,17 +101,19 @@ def build_model(dropout = 0.1, optimizer = 'adam', learning_rate = 0.1, activati
 
 
 def create_hyperparameters():
-
-    batches = [8, 32, 64]
-    optimizers = [RMSprop, Adam, Adadelta, Adagrad, SGD, Nadam]
-    lr = [1e-4, 1e-3, 1e-2]
-    dropout = [0.1, 0.2, 0.3, 0.4]
-    activation = ['relu', 'elu', 'selu', 'tanh', 'sigmoid', LeakyReLU()]
+    
+    batches = [8, 16, 24, 32, 40]
+    optimizers = [RMSprop, Adam, Adadelta, SGD, Adagrad, Nadam]
+    learning_rate = [1e-5, 1e-4, 1e-3, 1e-2]
+    dropout = [0.1, 0.2, 0.3]
+    activation = ['tanh', 'relu', 'elu', "selu", "softmax", "sigmoid", LeakyReLU()]
     kernel_size = [2, 3, 4]
-    epochs = [64, 128, 256]
+    epochs = [100, 300, 500]
 
-    return {"batch_size": batches, "optimizer": optimizers, "learning_rate": lr,
-            "dropout": dropout, "activation": activation, "kernel_size": kernel_size, "epochs": epochs}
+    # return: {key, value}
+    return{"batch_size": batches, "optimizer":optimizers,
+           "learning_rate": learning_rate, "drop": dropout, 
+           "activation": activation, "kernel_size": kernel_size, "epochs": epochs}
 
 
 model = tf.keras.wrappers.scikit_learn.KerasClassifier(build_fn=build_model, verbose=1)
@@ -119,7 +121,6 @@ model = tf.keras.wrappers.scikit_learn.KerasClassifier(build_fn=build_model, ver
 hyperparams = create_hyperparameters()
 
 rs = RandomizedSearchCV(model, hyperparams, cv=3)
-
 rs.fit(x_train, y_train)
 
 print(f"best_params :\b=n {rs.best_params_}")
@@ -127,4 +128,39 @@ print(f"best_params :\b=n {rs.best_params_}")
 acc = rs.score(x_test, y_test)
 print("accuracy :", acc)
 
+
+
+
+
+
+# def create_hyperparameters():
+
+#     batches = [8, 32, 64]
+#     optimizers = [RMSprop, Adam, Adadelta, Adagrad, SGD, Nadam]
+#     lr = [1e-4, 1e-3, 1e-2]
+#     dropout = [0.1, 0.2, 0.3, 0.4]
+#     activation = ['relu', 'elu', 'selu', 'tanh', 'sigmoid', LeakyReLU()]
+#     kernel_size = [2, 3, 4]
+#     epochs = [64, 128, 256]
+
+#     return {"batch_size": batches, "optimizer": optimizers, "learning_rate": lr,
+#             "dropout": dropout, "activation": activation, "kernel_size": kernel_size, "epochs": epochs}
+
+
+# model = tf.keras.wrappers.scikit_learn.KerasClassifier(build_fn=build_model, verbose=1)
+
+# hyperparams = create_hyperparameters()
+
+# rs = RandomizedSearchCV(model, hyperparams, cv=3)
+
+# rs.fit(x_train, y_train)
+
+# print(f"best_params :\b=n {rs.best_params_}")
+
+# acc = rs.score(x_test, y_test)
+# print("accuracy :", acc)
+
     
+
+
+
