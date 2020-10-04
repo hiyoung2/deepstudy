@@ -37,7 +37,8 @@ imshow 실행하면 'image'라는 창이 없어도 알아서 생성하기 때문
 '''
 
 # OpenCV API
-# 영상 파일 불러오기
+
+# 1. 영상 파일 불러오기
 # cv2.imread(filename, flags=None) -> retval
 # 1) filename : 불러올 영상 파일 이름(문자열)
 # (1) 상대 경로 : 'cat.bmp', '../data/cat.bmp'
@@ -50,3 +51,34 @@ imshow 실행하면 'image'라는 창이 없어도 알아서 생성하기 때문
 
 # opencv 관련 함수들은 document로 보면 된다 https://docs.opencv.org/master/
 
+# 2. 영상 파일 저장하기
+# cv2.imwrite(filename, img, params = None) -> retval
+# filename : 저장할 영상 파일 이름(문자열)
+# img : 저장할 영상 데이터(numpy.ndarray)
+# params : 파일 저장 옵션 지정(속성&값의 정수 쌍)
+# e.g. JPG 파일 압축률을 90%로 지정하고 싶다면? [cv2.IMWRITE_JPEG_QUALITY,90] 지정
+# retval : 정상적으로 저장하면 True, 실패하면 False
+
+# 3. 새창 띄우기 & 창 닫기
+# cv2.namedWindow(winname, flags=None) -> None
+# winname : 창 고유 이름, 이 이름으로 창을 구분함
+# flags : 창 속성 지정 플래그
+# 1) cv2.WINDOW_NORMAL : 영상 크기가 창 크기에 맞게 지정됨
+# 2) cv2.WINDOW_AUTOSIZE : 창 크기가 영상 크기에 맞게 자동으로 변경됨(default)
+
+# cv2.destroyWindow(winname) -> None
+# cv2.destroyAllWindows() -> None
+# winname : 닫고자 하는 창 이름
+# 일반적인 경우 프로그램 종료 시 운영 체제에 의해 열려 있는 모든 창이 자동으로 닫힘
+
+# 4. 창 위치 & 크기 지정
+# cv2.moveWinidow(winname, x, y) -> None
+# winname : 창 이름
+# x, y : 이동할 위치 좌표
+
+# cv2.resizeWindow(winname, width, height) -> None
+# winname : 창 이름
+# width, height : 변경할 창 크기
+# 참고 사항
+# * 창 생성시 cv2.WINDOW_NORMAL 속성으로 생성되어야 동작함
+# * 영상 출력 부분의 크기만을 고려함(제목 표시줄, 창 경계는 고려되지 않음)
