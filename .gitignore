@@ -4,7 +4,6 @@
 *.csv
 *.pyc
 *.txt
-*.css
 *.eot
 *.ttf
 *.woff2
@@ -13,6 +12,4 @@
 *.png
 *.svg
 *.gif
-*.js
-*.scss
-*.html
+*.avi
