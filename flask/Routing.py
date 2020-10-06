@@ -106,14 +106,14 @@
 # Request Parameter Custom Function Type
 # request 처리용 함수
 
-from datetime import datetime, data
-def ymd(fmt):
-    def trans(date_str):
-        return datetime.strptime(date_str, fmt)
-    return trans
+# from datetime import datetime, data
+# def ymd(fmt):
+#     def trans(date_str):
+#         return datetime.strptime(date_str, fmt)
+#     return trans
 
-@app.route('/dt')
-def dt():
-    datestr = request.values.get('date', date.tody(), type=ymd('%Y-%m-%d'))
-                             # parametername # default # type(현재 함수가 붙었음 , ymd 함수는 위에 정의되어 있음)
-    return "우리나라 시간 형식: " + str(datestr)
+# @app.route('/dt')
+# def dt():
+#     datestr = request.values.get('date', date.tody(), type=ymd('%Y-%m-%d'))
+#                              # parametername # default # type(현재 함수가 붙었음 , ymd 함수는 위에 정의되어 있음)
+#     return "우리나라 시간 형식: " + str(datestr)
