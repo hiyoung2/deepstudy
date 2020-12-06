@@ -13,3 +13,21 @@ f = lambda x : x + 100 # 수학 함수표현 f(x)를 x+100 으로 대체된다�
 
 for i in range(3):
     print(f(i)) 
+
+
+# lambda 에서 입력값을 반드시 이용할 필요는 없다
+
+def print_hello():
+    print("hello python")
+
+def test_lambda(s, t):
+    print("input1 ==", s, ", input2 ==", t)
+
+s = 100
+t = 200
+# 생각해보기 -> s, t 선언 및 값 할당이 없으면 error
+fx = lambda x, y : test_lambda(s, t) # fx(x, y) = test_lambda(s, t)
+fy = lambda x, y : print_hello() # fy(x, y) = print_hello()
+
+fx(500, 1000)
+fy(300, 600)
