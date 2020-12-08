@@ -15,6 +15,9 @@ for i in range(3):
     print(f(i)) 
 
 
+###################################################################
+
+
 # lambda 에서 입력값을 반드시 이용할 필요는 없다
 
 def print_hello():
@@ -28,6 +31,13 @@ t = 200
 # 생각해보기 -> s, t 선언 및 값 할당이 없으면 error
 fx = lambda x, y : test_lambda(s, t) # fx(x, y) = test_lambda(s, t)
 fy = lambda x, y : print_hello() # fy(x, y) = print_hello()
+# -> fx == 입력으로 x, y를 받아 최종적으로 test_lambda(s, t) 함수로 대체된다
+# -> fy == 입력으로 x, y를 받아 최종적으로 print_hello() 함수로 대체된다
 
 fx(500, 1000)
 fy(300, 600)
+
+# input1 == 100 , input2 == 200
+# hello python
+
+# 수학적 표현을 하기 위해 일반적으로 쓰는 것이 lambda 함수이다
