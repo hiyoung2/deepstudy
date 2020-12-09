@@ -12,6 +12,9 @@
 #
 # 기본적으로 파이썬에서는 메서드와 속성 모두 public
 
+# 아래 Person 이라는 Class는 init, work, sleep 3개의 메서드를 가지고 있다
+# init은 특히나 파이썬 클래스가 반드시 가져야 하는 메서드!
+
 class Person:
     def __init__(self, name):
         self.name = name
@@ -24,8 +27,11 @@ class Person:
         print(self.name + " is sleeping")
 
 
-# Person instance 2개 생성
-obj = Person("PARK")
+obj = Person("PARK") 
+# Person Class를 인스턴스 obj를 이용하여 생성
+# 생성자인 init 내에서 입력으로 받은 name(PARK)을 self.name에 대입을 한다
+# self.name은 Class의 멤버 변수를 가리킨다
+
 
 # method call
 obj.work("ABCDEF")
@@ -33,3 +39,7 @@ obj.sleep()
 
 # 속성에 직접 접근, 기본적으로 파이썬에서는 모두 public
 print("current person object is ", obj.name)
+# 여기서 name은 Person Class가 가지고 있는 내부의 인스턴스 변수인데
+# 인스턴스 obj를 이용해 바로 값을 가져올 수 있다
+# 파이썬에서는 메서드와 멤버변수 모두가 기본적으로 public으로 선언되기 때문에
+# 외부에서 생성된 인스턴스를 통해 바로 접근하여 사용가능하다
