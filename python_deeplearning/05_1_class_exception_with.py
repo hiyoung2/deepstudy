@@ -27,7 +27,7 @@ class Person:
         print(self.name + " is sleeping")
 
 
-obj = Person("PARK") 
+obj = Person("HA") 
 # Person Class를 인스턴스 obj를 이용하여 생성
 # 생성자인 init 내에서 입력으로 받은 name(PARK)을 self.name에 대입을 한다
 # self.name은 Class의 멤버 변수를 가리킨다
